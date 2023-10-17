@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 09:32:48 by fschuber          #+#    #+#             */
-/*   Updated: 2023/10/17 09:43:51 by fschuber         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:35:02 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 #include <stdio.h>
 
-void	print_char(char c)
+int	print_char(char c)
 {
-	// printf("helllllllllll[%c]", c);
 	write(1, &c, 1);
+	return (1);
 }
