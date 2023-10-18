@@ -1,3 +1,8 @@
+v0.4.0
+- Finished %p
+- Added hexa & unsigned int
+- Added Makefile & .a file
+
 v0.3.0
 - Implemented printed characters return value
 - Began with %p implementation

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_int.c                                        :+:      :+:    :+:   */
+/*   print_u_int.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 08:45:48 by fschuber          #+#    #+#             */
-/*   Updated: 2023/10/18 09:27:35 by fschuber         ###   ########.fr       */
+/*   Created: 2023/10/18 09:27:43 by fschuber          #+#    #+#             */
+/*   Updated: 2023/10/18 09:28:17 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include <stdio.h>
 
-static int	num_length(long num)
+static int	num_length(unsigned long num)
 {
 	if (num < 0)
 		return (1 + num_length(-num));
@@ -23,7 +23,7 @@ static int	num_length(long num)
 	return (1 + num_length(num / 10));
 }
 
-static int	itoout_loop(long num, int index)
+static int	itoout_loop(unsigned long num, int index)
 {
 	char	temp;
 	int		written_chars;
@@ -42,12 +42,12 @@ static int	itoout_loop(long num, int index)
 	return (written_chars + 1);
 }
 
-int	print_int(int int_num)
+int	print_u_int(unsigned int int_num)
 {
-	long	long_num;
-	int		length;
+	unsigned long	long_num;
+	int				length;
 
-	long_num = (long)int_num;
+	long_num = (unsigned long)int_num;
 	length = num_length(long_num);
 	itoout_loop(long_num, length - 1);
 	return (length);
