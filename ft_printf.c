@@ -6,7 +6,7 @@
 /*   By: fschuber <fschuber@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 07:40:32 by fschuber          #+#    #+#             */
-/*   Updated: 2023/10/18 09:34:58 by fschuber         ###   ########.fr       */
+/*   Updated: 2023/10/19 08:49:06 by fschuber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,34 +34,50 @@ static int	identify_specials(const char *str, va_list args, int counter)
 		return (print_hexa(va_arg(args, int), 'x'));
 	if (str[counter + 1] == 'X')
 		return (print_hexa(va_arg(args, int), 'X'));
-	return (0);
+	return (-1);
+}
+
+int	process_string(const char *str, va_list args)
+{
+	int	counter;
+	int	printed_chars_counter;
+	int	specials_output;
+
+	counter = 0;
+	printed_chars_counter = 0;
+	specials_output = 0;
+	while (str[counter] != '\0')
+	{
+		if (str[counter] == '%')
+		{
+			specials_output = identify_specials(str, args, counter++);
+			if (specials_output == -1)
+				return (-1);
+			printed_chars_counter += specials_output;
+		}
+		else
+		{
+			if (write(1, &str[counter], 1) == -1)
+				return (-1);
+			printed_chars_counter++;
+		}
+		counter++;
+	}
+	return (printed_chars_counter);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
-	int		counter;
 	int		printed_chars_counter;
 
-	counter = 0;
-	printed_chars_counter = 0;
 	va_start(args, str);
+	printed_chars_counter = 0;
 	if (!str)
 		return (va_end(args), 0);
-	while (str[counter] != '\0')
-	{
-		if (str[counter] == '%')
-		{
-			printed_chars_counter += identify_specials(str, args, counter);
-			counter++;
-		}
-		else
-		{
-			write(1, &str[counter], 1);
-			printed_chars_counter++;
-		}
-		counter++;
-	}
+	printed_chars_counter = process_string(str, args);
 	va_end(args);
+	if (printed_chars_counter == -1)
+		return (-1);
 	return (printed_chars_counter);
 }

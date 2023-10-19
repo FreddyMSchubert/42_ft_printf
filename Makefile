@@ -1,6 +1,6 @@
 NAME		=	libftprintf.a
 
-SRCS		=	ft_printf.c print_char.c print_hexa.c print_int.c print_u_int.c print_ptr.c print_str.c \
+SRCS		=	ft_printf.c print_char.c print_hexa.c print_int.c print_ptr.c print_str.c \
 
 OBJS		=	$(SRCS:.c=.o)
 
