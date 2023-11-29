@@ -1,5 +1,8 @@
 # Changelog ft_printf by @fschuber
 
+v0.5.1
+- after understanding docker & valgrind, i went back to check for leaks. everythings good!
+
 v0.5.0
 - Fixed hexa negative issues
 - implemented write error handlin
